@@ -1,50 +1,196 @@
 ---
-title: "Spawn Ai-WorkStation"
-description: "Launch a GPU-powered JupyterLab environment."
+title: "Spawn an Ai-WorkStation"
+description: "Step-by-step guide to launching a workstation environment on the Ai-MicroCloud platform."
 ---
 
 ## Overview
 
-After you log in to the Zeblok Computational platform, the dashboard presents a **Spawn Ai-WorkStation** option. Follow the steps below to launch your notebook environment.
+An **Ai-WorkStation** is a cloud-hosted notebook environment that you can spin up on demand from the Ai-MicroCloud platform. This guide walks you through every field on the **New Workstation** form so you can configure and launch your environment with confidence.
+
+To get started, navigate to **Workspace → Workstations** in the left sidebar and click the **New Workstation** button in the top-right corner.
+
+<Frame>
+  <img src="/images/workstations/no-workstations.png" alt="Workstations page showing no workstations spawned yet" />
+</Frame>
+
+---
 
 <Steps>
-  <Step title="Open the Spawn Ai-WorkStation page">
-    From the dashboard, click **Spawn Ai-WorkStation**. You are redirected to the workstation selection page.
-  </Step>
 
-  <Step title="Select a notebook type">
-    Choose the type of notebook you want to use. Three categories are available:
+  <Step title="Configure">
 
-    - **Ai-WorkStations** — general-purpose GPU-accelerated notebooks
-    - **Intelligence Marketplace** — curated algorithm and model zoo notebooks
-    - **Ai-HPC-WorkStations** — high-performance computing notebooks for demanding workloads
-  </Step>
+    The **Configure** tab is the first step of the setup form. It collects the core settings needed to define what your workstation runs and where it is hosted.
 
-  <Step title="Check your access level">
-    All plans are unlocked for Beta users. Currently, every user on the platform is granted **Beta Access**, so all available notebook plans are ready to select.
-  </Step>
+    ### Workstation *(required)*
 
-  <Step title="Select a plan">
-    Click **Select Plan** to choose the resource tier (CPU/GPU allocation) that meets your requirements. Each plan displays the compute resources it provides so you can match the plan to your workload.
-  </Step>
+    Use the **Workstation** dropdown to select the type of notebook environment you want to spawn. Several public templates are available, including:
 
-  <Step title="Select a namespace">
-    Choose the namespace where you want to deploy your Ai-WorkStation from the dropdown.
+    - **Phison Notebook**
+    - **Minimal Notebook**
+    - **R Notebook**
+    - **PySpark Notebook**
+    - **SciPy Notebook**
+    - **Data Science Notebook**
+    - **Nvidia Rapids**
+    - **BentoML**
+
+    Click on the template that best matches your workload. Each option is labeled **Public**, indicating it is available to all users on the platform.
+
+    <Frame>
+      <img src="/images/workstations/workstation-select.png" alt="Workstation type selection dropdown showing available notebook templates" />
+    </Frame>
+
+    ---
+
+    ### Image Tag *(required)*
+
+    After selecting a workstation type, choose the **Image Tag** — the specific Docker image version that will be used to run your environment.
+
+    Image tags come in two kinds:
+
+    **Standard tags** are versioned releases of the notebook image (e.g., `zeblok/minimal-notebook:20240208`). The tag marked **Latest** is the most recently published version and is recommended for most use cases.
+
+    <Frame>
+      <img src="/images/workstations/image-tag-standard.png" alt="Image tag dropdown showing standard tags including a Latest tag" />
+    </Frame>
+
+    **AI-Daptive+ tags** are enhanced image versions marked with the **AI-Daptive+** badge. These images are optimised for AI/ML workloads and unlock an additional hardware option — **NVMe / High Bandwidth Flash Memory** — which is described below.
+
+    <Frame>
+      <img src="/images/workstations/image-tag-aidaptive.png" alt="Image tag dropdown showing an AI-Daptive+ tagged image" />
+    </Frame>
+
+    #### NVMe / High Bandwidth Flash Memory *(AI-Daptive+ only)*
+
+    When you select an **AI-Daptive+** image tag, a toggle labelled **NVMe / High Bandwidth Flash Memory** appears on the form. Enabling this toggle lets you attach a high-speed NVMe flash device to your workstation for local storage. This capability is also referred to as **memory offloading** — it allows large model weights or datasets to be offloaded from RAM or GPU memory onto fast local NVMe storage, enabling you to work with models that would otherwise exceed your available memory.
+
+    Once the toggle is enabled, a list of available NVMe devices is displayed. Each entry shows the host node, device path, serial number, model, and capacity. Select the device you want to attach to your workstation.
+
+    <Frame>
+      <img src="/images/workstations/nvme-selection.png" alt="NVMe device list shown after enabling the High Bandwidth Flash Memory toggle" />
+    </Frame>
 
     <Note>
-      You must be a member of a namespace to select it. Contact your OrgAdmin to be added to the appropriate namespace. If you are an OrgAdmin, navigate to the Namespaces section to add members directly.
+      The NVMe / High Bandwidth Flash Memory option is only available when an AI-Daptive+ image tag is selected. It will not appear for standard image tags.
     </Note>
+
+    ---
+
+    ### Data Center *(required)*
+
+    Select the **Data Center** where your workstation will be deployed. The dropdown lists all data centres available to your organisation. Each entry shows the data centre name, location, and whether it is the primary region.
+
+    <Frame>
+      <img src="/images/workstations/datacenter-select.png" alt="Data Center dropdown showing the Phison-Prod data centre in Redmond, WA, US" />
+    </Frame>
+
+    ---
+
+    ### Plan *(required)*
+
+    Choose a **Plan** to define the compute resources allocated to your workstation. Each plan displays the number of GPUs, vCPUs, RAM, and local disk storage it provides.
+
+    Example plans visible on the platform include:
+
+    | Plan Name | GPU | vCPU | RAM | Disk |
+    |---|---|---|---|---|
+    | Custom-Plan-cQvtb7u9 | 0 | 2 | 3 GB | 0 GB |
+    | Custom-Plan-_v1Yoesd | 0 | 1 | 4 GB | 0 GB |
+    | test plan | 0 | 1 | 1 GB | 10 GB |
+    | Custom-Plan-UdVCUEnq | 1 | 14 | 48 GB | 100 GB |
+    | Custom-Plan-1lr3aae9 | 2 | 16 | 32 GB | 0 GB |
+
+    Select the plan that matches your expected workload. If none of the existing plans meet your needs, click **+ New Dynamic Plan** to create a custom resource configuration.
+
+    <Frame>
+      <img src="/images/workstations/plan-select.png" alt="Plan selection dropdown listing available compute plans with GPU, vCPU, RAM, and disk details" />
+    </Frame>
+
+    Once you have filled in all required fields on the Configure tab, click **Next** to proceed to the Environment tab.
+
   </Step>
 
-  <Step title="Mount an S3 bucket (optional)">
-    If you want to attach storage, enable the **Mount S3 Bucket** option and select your bucket name from the Ai-DataLake dropdown. Skip this step if you do not need persistent object storage attached to the notebook.
+  <Step title="Environment">
+
+    The **Environment** tab collects deployment-level settings such as the namespace, instance name, networking, environment variables, and optional storage configuration.
+
+    ### Namespace *(required)*
+
+    Select the **Namespace** in which your workstation will be deployed. Namespaces are used to organise and isolate workloads within your organisation. Use the dropdown to choose from the namespaces available to your account.
+
+    <Note>
+      You must be a member of a namespace to deploy into it. If the namespace you need is not listed, contact your OrgAdmin to be added. OrgAdmins can manage namespace membership from the IAM section.
+    </Note>
+
+    ### Instance Name *(required)*
+
+    Enter a unique **Instance Name** to identify your workstation. The default value is `workstation`. You can customise this to reflect the purpose of the environment (for example, `training-run-01` or `data-exploration`).
+
+    <Frame>
+      <img src="/images/workstations/environment-tab.png" alt="Environment tab showing namespace, instance name, protocol and ports, environment variables, and arguments fields" />
+    </Frame>
+
+    ---
+
+    ### Protocol & Ports *(required)*
+
+    This section defines how your workstation exposes its services. By default, a single entry is pre-configured:
+
+    - **Protocol:** HTTP
+    - **Port:** 8888
+    - **Label:** UI-default
+
+    Port `8888` is the standard port for JupyterLab. You can click **Add Port** to expose additional ports if your workstation runs other services (for example, a model serving endpoint on a different port).
+
+    ---
+
+    ### Environment Variables *(optional)*
+
+    Add key-value pairs that will be injected as environment variables into your workstation container at startup. This is useful for passing in configuration values, API keys, or runtime flags without hardcoding them into your notebooks.
+
+    Click **Add Env Variable** to add additional rows.
+
+    ---
+
+    ### Arguments *(optional)*
+
+    Pass command-line arguments to the workstation's entrypoint process. Enter the argument name (for example, `--model`) and its corresponding value in the provided fields.
+
+    Click **Add Argument** to add additional argument rows.
+
+    ---
+
+    ### Volume Path *(optional)*
+
+    Enter a container path where a persistent volume should be mounted (for example, `/data`). This is useful if you want a specific directory inside the container to be backed by durable storage.
+
+    ---
+
+    ### Attach Bucket *(optional)*
+
+    Use this toggle to attach an object storage bucket to your workstation. The default value is **No**.
+
+    Set it to **Yes** to mount a bucket directly into the workstation's filesystem. When enabled, two additional fields appear:
+
+    - **Bucket Name** — the name of the bucket to attach (auto-populated from your account's available buckets).
+    - **Mount Path** — the path inside the container where the bucket will be accessible (for example, `/home/abhinav/d7240f30e840-abhinav`).
+
+    <Frame>
+      <img src="/images/workstations/attach-bucket.png" alt="Attach Bucket set to Yes, showing the Bucket Name and Mount Path fields populated" />
+    </Frame>
+
+    ---
+
+    Once all required fields are filled in, click **Create** to spawn your workstation. The platform will provision the container and redirect you to the workstation list, where you can monitor the status of your new environment.
+
   </Step>
 
-  <Step title="Name your workstation and spawn">
-    Enter a name for your notebook, then click **Spawn**. After the workstation is successfully created, your JupyterLab environment opens and is ready to use.
-  </Step>
 </Steps>
 
-## Customized Workstations
+---
 
-If the available notebook images do not meet your needs, Zeblok supports customized workstations through the **snapshot CLI feature**. You can create a snapshot of a running workstation — including all installed packages and custom configurations — and register it as a new workstation image. Use `zeblok snapshot` from the integrated terminal to create a Docker image of your current workstation configuration, which you can then use as a base for future workstations. See the [ZBL CLI](/ai-api-engine/cli) page for details on the snapshot command.
+## Customised Workstations
+
+If none of the available notebook images meet your requirements, Ai-MicroCloud supports customised workstations through the **snapshot CLI feature**. You can create a snapshot of a running workstation — including all installed packages and custom configurations — and register it as a new workstation image.
+
+Run `zeblok snapshot` from the integrated terminal to create a Docker image of your current workstation configuration. That image can then be used as the base for future workstations. See the [ZBL CLI](/ai-api-engine/cli) page for full details on the snapshot command.
