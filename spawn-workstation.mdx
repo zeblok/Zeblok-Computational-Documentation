@@ -1,0 +1,50 @@
+---
+title: "Spawn Ai-WorkStation"
+description: "Launch a GPU-powered JupyterLab environment."
+---
+
+## Overview
+
+After you log in to the Zeblok Computational platform, the dashboard presents a **Spawn Ai-WorkStation** option. Follow the steps below to launch your notebook environment.
+
+<Steps>
+  <Step title="Open the Spawn Ai-WorkStation page">
+    From the dashboard, click **Spawn Ai-WorkStation**. You are redirected to the workstation selection page.
+  </Step>
+
+  <Step title="Select a notebook type">
+    Choose the type of notebook you want to use. Three categories are available:
+
+    - **Ai-WorkStations** — general-purpose GPU-accelerated notebooks
+    - **Intelligence Marketplace** — curated algorithm and model zoo notebooks
+    - **Ai-HPC-WorkStations** — high-performance computing notebooks for demanding workloads
+  </Step>
+
+  <Step title="Check your access level">
+    All plans are unlocked for Beta users. Currently, every user on the platform is granted **Beta Access**, so all available notebook plans are ready to select.
+  </Step>
+
+  <Step title="Select a plan">
+    Click **Select Plan** to choose the resource tier (CPU/GPU allocation) that meets your requirements. Each plan displays the compute resources it provides so you can match the plan to your workload.
+  </Step>
+
+  <Step title="Select a namespace">
+    Choose the namespace where you want to deploy your Ai-WorkStation from the dropdown.
+
+    <Note>
+      You must be a member of a namespace to select it. Contact your OrgAdmin to be added to the appropriate namespace. If you are an OrgAdmin, navigate to the Namespaces section to add members directly.
+    </Note>
+  </Step>
+
+  <Step title="Mount an S3 bucket (optional)">
+    If you want to attach storage, enable the **Mount S3 Bucket** option and select your bucket name from the Ai-DataLake dropdown. Skip this step if you do not need persistent object storage attached to the notebook.
+  </Step>
+
+  <Step title="Name your workstation and spawn">
+    Enter a name for your notebook, then click **Spawn**. After the workstation is successfully created, your JupyterLab environment opens and is ready to use.
+  </Step>
+</Steps>
+
+## Customized Workstations
+
+If the available notebook images do not meet your needs, Zeblok supports customized workstations through the **snapshot CLI feature**. You can create a snapshot of a running workstation — including all installed packages and custom configurations — and register it as a new workstation image. Use `zeblok snapshot` from the integrated terminal to create a Docker image of your current workstation configuration, which you can then use as a base for future workstations. See the [ZBL CLI](/ai-api-engine/cli) page for details on the snapshot command.

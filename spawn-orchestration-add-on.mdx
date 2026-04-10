@@ -1,0 +1,62 @@
+---
+title: "Orchestration Add-on"
+description: "Enable HPC capabilities with Ray cluster orchestration."
+---
+
+## Overview
+
+The Orchestration Add-on enables **Slurm-as-a-Service** and **Ray clusters** inside the Ai-MicroCloud for high-performance computing (HPC) workloads. Once spawned, a Ray cluster gives you auto-scaling parallel compute that you can target directly from Python — making it well-suited for:
+
+- Parallel data processing across large datasets
+- Training complex machine learning models distributed across multiple workers
+- Running immense computations that exceed the capacity of a single node
+
+The add-on provisions a Ray head node together with a configurable pool of worker nodes. You set the minimum and maximum worker count to control auto-scaling behavior.
+
+## Spawn an Orchestration Add-on
+
+<Steps>
+  <Step title="Navigate to the Orchestration tab">
+    In the left-hand navigation menu, click the **Orchestration** tab to open the orchestration management view.
+  </Step>
+
+  <Step title="Create an orchestration add-on definition">
+    Click the **Create Orchestration Addon** button in the top-right corner of the page. This registers a new add-on definition that you will later spawn into your workspace.
+  </Step>
+
+  <Step title="Fill in the add-on form">
+    Complete the required fields in the creation form, then click **Add Orchestration Addon** to save the definition. The new add-on appears in the list on the current tab.
+  </Step>
+
+  <Step title="Go to your Workspace">
+    After the add-on definition is created, click the **Workspace** button to navigate to your Ai-WorkSpace. This is where you spawn a live Ray cluster from the definition you just created.
+  </Step>
+
+  <Step title="Spawn the Orchestration Add-on">
+    Inside the workspace, click the **Spawn Orchestration Addon** button to begin the deployment wizard.
+  </Step>
+
+  <Step title="Configure the Ray cluster deployment">
+    Fill in the deployment parameters:
+
+    - **Service** — select the orchestration add-on definition you created in Step 3
+    - **Datacenter** — choose the datacenter where the cluster will run
+    - **Plan** — select the default plan, or choose a custom plan you attached to the add-on at creation time
+    - **Namespace** — select the namespace to deploy into
+    - **Minimum workers** — the lower bound for auto-scaling (cluster will not scale below this count)
+    - **Maximum workers** — the upper bound for auto-scaling (cluster will not scale above this count)
+    - **Deployment name** — enter a name to identify this cluster deployment
+  </Step>
+
+  <Step title="Connect to the cluster from Python">
+    Once the cluster is running, it appears under **Spawned Orchestration Addons** in your workspace. Copy the endpoint URL and use it in your Python code to submit Ray tasks:
+
+    ```python
+    import ray
+
+    ray.init(address="<your-cluster-url>")
+    ```
+
+    Your distributed workloads now execute across the auto-scaling Ray cluster.
+  </Step>
+</Steps>

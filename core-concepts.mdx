@@ -1,0 +1,67 @@
+---
+title: "Core concepts"
+description: "The key components that make up the Zeblok Computational platform."
+---
+
+<AccordionGroup>
+  <Accordion title="Ai-MicroCloud™">
+    Ai-MicroCloud™ provides a single, cohesive, turnkey, cloud-native AI environment for the development, testing, training, and deployment of an end-to-end AI/ML solution — from Core to Edge.
+
+    It eliminates 12–18 months of engineering effort to integrate the multitude of technologies required for a production AI ecosystem, and reduces go-to-market time for ISVs by 8–12 months.
+  </Accordion>
+
+  <Accordion title="JupyterLab">
+    JupyterLab is a web-based interactive development environment for Jupyter notebooks, code, and data. It is the interface you work in when you launch an Ai-WorkStation.
+
+    JupyterLab is flexible: you can configure and arrange the interface to support a wide range of workflows in data science, scientific computing, and machine learning. It is also extensible and modular, so you can write plugins that add new components and integrate with existing ones.
+
+    ### The Jupyter Notebook
+
+    The Jupyter Notebook is an open-source web application that lets you create and share documents containing live code, equations, visualizations, and narrative text. Common uses include data cleaning and transformation, numerical simulation, statistical modeling, data visualization, and machine learning.
+  </Accordion>
+
+  <Accordion title="Ai-WorkStation">
+    The Zeblok Ai-WorkStation provides a single unified environment that seamlessly orchestrates infrastructure, open-source AI/ML frameworks, and proven AI algorithms. An intuitive interface lets a data scientist, data engineer, or AI engineer access petaFLOPS of computing power, develop and train new AI models, and take them to production in a runtime environment — all on the same platform.
+
+    **Default resources:** 1 GPU, 1 vCPU, 64 GB storage. Resources scale easily as your workload grows.
+  </Accordion>
+
+  <Accordion title="Ai-HPC-WorkStation">
+    The Ai-HPC-WorkStation extends the standard Ai-WorkStation for demanding, large-scale workloads. It adds:
+
+    - **Slurm-as-a-Service** — job scheduling and workload management
+    - **Parallel processing** — distribute jobs across worker nodes
+    - **4+ GPUs** — scale up to the compute your workload requires
+
+    You access HPC resources through the same Jupyter Notebook interface, so the workflow stays consistent.
+
+    <Tip>
+      Use the Ai-HPC-WorkStation when training large models that require multi-GPU parallelism or long batch jobs.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Ai-Data Lake">
+    Ai-Data Lake is a centralized, high-performance data store that lets you import, filter, and instantly analyze both structured and unstructured data at any scale.
+
+    Key characteristics:
+    - Operates at **SSD speeds** for fast read/write access
+    - Supports **industry-grade SSL security** and data redundancy for high availability
+    - Scales up as your data grows
+  </Accordion>
+
+  <Accordion title="Ai-API™ Engine">
+    Getting a machine learning model into production is hard. Data scientists are rarely experts in building production services, and handing off a pickled model or weights file to an engineering team is time-consuming and error-prone.
+
+    Zeblok's Ai-API™ Engine lives inside Ai-MicroCloud™ and bridges the gap between data science and DevOps. It lets you deploy trained ML models anywhere as production APIs in a fast, repeatable, and scalable way — without requiring deep infrastructure knowledge.
+  </Accordion>
+
+  <Accordion title="Ai-MicroCloud™ Manager">
+    Ai-MicroCloud™ Manager is the centralized administration utility for the entire platform. It lets organization administrators manage and orchestrate all components, including the Ai-WorkStation, Ai-HPC-WorkStation, Ai-Data Lake, Intelligence Marketplace, and Ai-API™ Engine.
+
+    With the Manager, you can:
+    - Define **role-based access control (RBAC)** for users and teams
+    - Configure **infrastructure plans** — vCPUs, GPUs, memory, and storage
+    - Define **namespaces** and add accessible data centers
+    - View **metering data** for resource utilization, billing, or chargeback purposes
+  </Accordion>
+</AccordionGroup>

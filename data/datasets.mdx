@@ -1,0 +1,46 @@
+---
+title: "Datasets"
+description: "Upload and manage datasets in your Ai-Data Lake."
+---
+
+## Overview
+
+A dataset is a named collection of data files — CSVs, images, videos, IoT sensor recordings, or any other supported format — that you use to train models, run analytics, or serve as inputs to microservices and APIs. Datasets live in your Ai-Data Lake object storage bucket, and any Ai-WorkStation or microservice you spawn on the platform can access them immediately after upload.
+
+When you create an account on Zeblok, the platform automatically provisions a personal bucket for you in Ai-Data Lake. You do not need to configure storage before uploading your first dataset.
+
+## Supported data types
+
+- CSV and tabular files
+- Images (JPEG, PNG, and other common formats)
+- Video files
+- IoT sensor data from Edge locations
+
+## Onboarding your data
+
+<Steps>
+  <Step title="Access the Data Lake">
+    Open the Zeblok dashboard and navigate to **Datasets** in the left sidebar, or open the Data Lake section from inside an Ai-WorkStation notebook.
+  </Step>
+  <Step title="Create a new dataset">
+    Click **Create new Datasets +**. Enter a dataset name in the **Enter Dataset Name** field, then add a description in the **Enter Dataset Description** field. Click **Create** to provision the dataset container.
+  </Step>
+  <Step title="Upload your files">
+    Find the dataset you just created and click **View**. Drag and drop your data files into the bucket, then click **Upload Files** to complete the transfer. You can also upload using Zeblok Magic Commands, the S3 REST API, or an HTTP source — see [Data Lake](/data/datalake) for details on each method.
+  </Step>
+  <Step title="Use the dataset in a workload">
+    Once uploaded, attach the dataset when spawning an Ai-WorkStation, microservice, or Ai-API. The files become available immediately inside the spawned environment without any additional mounting steps.
+  </Step>
+</Steps>
+
+## Deleting a dataset
+
+To remove a dataset and its contents through the GUI:
+
+1. Go to **Datasets** in the dashboard.
+2. Locate the dataset you want to delete.
+3. Click the delete action for that dataset and confirm the prompt.
+
+<Note>
+  Deleting a dataset permanently removes all files in that bucket. Make sure you no longer need the data before confirming deletion.
+</Note>

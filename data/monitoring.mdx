@@ -1,0 +1,64 @@
+---
+title: "Monitoring"
+description: "Monitor resource usage and performance metrics for your workloads."
+---
+
+## Overview
+
+Zeblok's monitoring system gives you a clear, centralized view of every resource consumed by your workloads. You can track CPU, memory, disk, and GPU utilization at both the node and pod level, inspect activity logs, and review performance metrics — all from the dashboard.
+
+Organization administrators get full visibility into resource usage across all users in the organization, enabling charge-back reporting and capacity planning.
+
+## Resource-level monitoring
+
+The platform captures graphical utilization data at the node and pod level for:
+
+- **CPU** — view real-time and historical CPU utilization for every Ai-WorkStation and microservice you have spawned
+- **Memory** — track memory consumption per workload to identify bottlenecks and right-size your resource plans
+- **GPU** — monitor GPU allocation and usage for GPU-accelerated workstations and inference services
+
+## Dashboard and analytics
+
+The **Dashboard** displays a graph of all notebooks previously spawned, current usage statistics, and a list of all notebooks available within your organization.
+
+Click **View Analytics** to open the Activities Monitoring page. If you are an Organization Admin, this page shows resource usage statistics and activity data for every user in your organization.
+
+## Performance metrics
+
+After you deploy an Ai-API, performance metrics for that endpoint become visible in the monitoring views. You can track inference throughput, latency, and error rates to understand how your deployed model is behaving under load.
+
+## Activity logs
+
+<AccordionGroup>
+  <Accordion title="Workstation logs" icon="desktop">
+    Logs are captured for every Ai-WorkStation you spawn. Use them to diagnose startup errors, runtime failures, or unexpected shutdowns.
+  </Accordion>
+  <Accordion title="Microservice logs" icon="server">
+    Each microservice generates logs throughout its lifecycle — from spawning through deletion. Review these logs to debug errors in your service configuration or code.
+  </Accordion>
+  <Accordion title="Ai-API logs" icon="code">
+    Logs for deployed Ai-APIs record request handling, errors, and shutdown events so you can troubleshoot inference issues after deployment.
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  Activity logs are retained for 30 days. Download or export any logs you need to keep for compliance or long-term troubleshooting before they expire.
+</Note>
+
+## Notification tab
+
+The **Notification** tab surfaces all user and component activity events in one place. It records:
+
+- Errors that occur during workload spawning
+- Events generated while a workload is running
+- Events generated during deletion of workstations, microservices, or APIs
+
+Check the Notification tab first when a workload fails to start or stops unexpectedly — it typically surfaces the root cause faster than navigating raw logs.
+
+## Session monitoring
+
+Session monitoring lets you track resource consumption across all workloads you have spawned during a session. Use this view to understand which workstations or microservices are consuming the most resources and to make informed decisions about scaling or terminating idle workloads.
+
+<Info>
+  Organization admins can access the Activities Monitoring page to view organization-wide session data, resource utilization trends, and usage breakdowns by user — useful for billing, charge-back, and capacity planning.
+</Info>

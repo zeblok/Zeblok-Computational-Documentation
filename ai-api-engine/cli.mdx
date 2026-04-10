@@ -1,0 +1,298 @@
+---
+title: "ZBL CLI"
+description: "Reference for the Zeblok command-line interface for model serving."
+---
+
+## Installation
+
+Install the Zeblok CLI globally using npm. The package is available at [npmjs.com/package/zbl-cli](https://www.npmjs.com/package/zbl-cli).
+
+```bash
+npm i -g zbl-cli
+```
+
+## Setup
+
+### Configure the CLI
+
+Connect the CLI to your Zeblok account:
+
+```bash
+zeblok configure <platformUrl> <username>
+```
+
+When you spawn a workstation, this command is pre-configured in your notebook with all required values.
+
+### Authenticate
+
+```bash
+zeblok auth
+```
+
+The CLI prompts for your **Access Key** and **Secret Key**. Retrieve both from **Manage your Zeblok Account** → **Get API Credential**.
+
+<Warning>
+  Once a model serving process has started, do not regenerate your access key or secret key in the profile tab. Doing so will cause the service update to fail.
+</Warning>
+
+### Verify the CLI is working
+
+```bash
+zeblok
+```
+
+---
+
+## Commands
+
+### zeblok showUrl
+
+Outputs the APP URL and DataLake URL configured in `zeblok configure`.
+
+```bash
+zeblok showUrl
+```
+
+---
+
+### zeblok snapshot
+
+Creates a snapshot of your workstation as a Docker image. The image tag is emailed to you and can be used to spawn a new workstation with the same configuration.
+
+```bash
+zeblok snapshot
+? Enter the name for docker file getting generated : <Docker Image Name>
+? Select your DataLake Bucket to Deploy (Use arrow keys) <Minio Bucket Selection>
+```
+
+The snapshot copies all files from your notebook with the same directory structure. It also generates a `requirements.txt` using `pip list --format=freeze` and installs those packages when the new workstation is spawned.
+
+<Info>
+  The snapshot restores the same directory structure and installed packages in the new workstation. The new workstation will be a close replica of the one you snapshotted.
+</Info>
+
+**Components:**
+
+| Parameter | Description |
+|---|---|
+| `Docker Image Name` | The name to assign to the generated Docker image. |
+| `Minio Bucket Selection` | The DataLake bucket where your notebook data is stored. |
+
+---
+
+### zeblok modelserve
+
+Serves your trained ML model using the specified method and packages it for deployment as an Ai-API™.
+
+```bash
+zeblok modelserve --type <method>
+```
+
+**Options:**
+
+| Flag | Description |
+|---|---|
+| `-t`, `--type` | Serving method. Choose from: `openvino`, `mlflow`, `bentoml`, `llamacpp`, `vllm`. |
+
+#### Serve without specifying a method
+
+If you run `zeblok modelserve` without `--type`, the CLI displays an interactive menu:
+
+```bash
+zeblok modelserve
+? Choose the serving method: (Use arrow keys)
+> openvino
+  mlflow
+  bentoml
+  llamacpp
+  vllm
+```
+
+Use the arrow keys to select a method and press Enter to confirm.
+
+---
+
+## Serving methods
+
+### OpenVINO
+
+Serves a model using OpenVINO IR format. The output path must contain two files with the same name: one `.xml` and one `.bin`.
+
+```bash
+zeblok modelserve --type openvino
+? Enter the path for generated IR model (without / at the end): <IR_OUTPUT_PATH>
+? Enter the IR output name : <IR_OUTPUT_NAME>
+? Select your DataLake Bucket to Deploy : <BUCKET_NAME>
+? Do you want to auto-deploy? : <AUTO_DEPLOY>
+? Select your namespace: <NAMESPACE>
+? Select your DataCenter: <DATACENTER>
+? Select your Kiosk: <KIOSK>
+? Select your Plan: <PLAN>
+? Name of your Deployment: <DEPLOYMENT_NAME>
+```
+
+**Components:**
+
+| Parameter | Description |
+|---|---|
+| `IR_OUTPUT_PATH` | Folder containing the `<IR_OUTPUT_NAME>.xml` and `<IR_OUTPUT_NAME>.bin` files. |
+| `IR_OUTPUT_NAME` | The shared name for both the `.xml` and `.bin` IR files. |
+| `BUCKET_NAME` | DataLake bucket where the model files will be stored. |
+| `AUTO_DEPLOY` | Boolean. If `YES`, the model is deployed directly to Ai-API™. |
+| `NAMESPACE` | Namespace for the deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+| `DATACENTER` | Datacenter for the deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+| `KIOSK` | Kiosk for the deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+| `PLAN` | Plan for the deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+| `DEPLOYMENT_NAME` | Name of the Ai-API™ deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+
+<Warning>
+  The `IR_OUTPUT_PATH` must contain exactly two files with the same base name: one `.xml` and one `.bin`.
+</Warning>
+
+---
+
+### BentoML
+
+Serves a model built with the `bentoml build` command. The CLI fetches the available models using `bentoml list --output json` and lets you select one.
+
+```bash
+zeblok modelserve --type bentoml
+? Select your Model to Deploy: <MODEL_NAME>
+? Select your DataLake Bucket to Deploy : <BUCKET_NAME>
+? Do you want to auto-deploy? : <AUTO_DEPLOY>
+? Select your namespace: <NAMESPACE>
+? Select your DataCenter: <DATACENTER>
+? Select your Kiosk: <KIOSK>
+? Select your Plan: <PLAN>
+? Name of your Deployment: <DEPLOYMENT_NAME>
+```
+
+**Components:**
+
+| Parameter | Description |
+|---|---|
+| `MODEL_NAME` | The model built using `bentoml build`. |
+| `BUCKET_NAME` | DataLake bucket where the model files will be stored. |
+| `AUTO_DEPLOY` | Boolean. If `YES`, the model is deployed directly to Ai-API™. |
+| `NAMESPACE` | Namespace for the deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+| `DATACENTER` | Datacenter for the deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+| `KIOSK` | Kiosk for the deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+| `PLAN` | Plan for the deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+| `DEPLOYMENT_NAME` | Name of the Ai-API™ deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+
+<Note>
+  BentoML must be installed in your workstation. If no model appears in the selection list, run `bentoml build` first in your model creation notebook.
+</Note>
+
+---
+
+### MLflow
+
+Fetches your model from a private MLflow registry and serves it. The MLflow registry can be spawned as an MLflow Microservice within your Microcloud.
+
+```bash
+zeblok modelserve --type mlflow
+? Enter the mlflow url for model : <MLFLOW_TRACKING_URL>
+? Enter the runId for model : <RUN_ID>
+? Enter the rootPath for model in directory : <DOWNLOADED_MODEL_PATH>
+? Enter the IR output name : <IR_OUTPUT_NAME>
+? Select your DataLake Bucket to Deploy : <BUCKET_NAME>
+? Do you want to auto-deploy? : <AUTO_DEPLOY>
+? Select your namespace: <NAMESPACE>
+? Select your DataCenter: <DATACENTER>
+? Select your Kiosk: <KIOSK>
+? Select your Plan: <PLAN>
+? Name of your Deployment: <DEPLOYMENT_NAME>
+```
+
+**Components:**
+
+| Parameter | Description |
+|---|---|
+| `MLFLOW_TRACKING_URL` | The URL of your MLflow tracking server. |
+| `RUN_ID` | The run ID of the model you want to serve. |
+| `DOWNLOADED_MODEL_PATH` | Folder name where your model is stored locally. |
+| `IR_OUTPUT_NAME` | Any name you want to assign to the model output. |
+| `BUCKET_NAME` | DataLake bucket where the model files will be stored. |
+| `AUTO_DEPLOY` | Boolean. If `YES`, the model is deployed directly to Ai-API™. |
+| `NAMESPACE` | Namespace for the deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+| `DATACENTER` | Datacenter for the deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+| `KIOSK` | Kiosk for the deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+| `PLAN` | Plan for the deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+| `DEPLOYMENT_NAME` | Name of the Ai-API™ deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+
+<Note>
+  MLflow must be installed in your workstation, and your trained model must be saved to a private MLflow registry before running this command.
+</Note>
+
+---
+
+### LlamaCpp
+
+Serves a LLAMA model using llama.cpp.
+
+```bash
+zeblok modelserve --type llamacpp
+? Enter the path for generated IR model (without / at the end): <IR_OUTPUT_PATH>
+? Enter the IR output name with its extension : <IR_OUTPUT_NAME>
+? Select your DataLake Bucket to Deploy : <BUCKET_NAME>
+? Do you want to auto-deploy? : <AUTO_DEPLOY>
+? Select your namespace: <NAMESPACE>
+? Select your DataCenter: <DATACENTER>
+? Select your Kiosk: <KIOSK>
+? Select your Plan: <PLAN>
+? Name of your Deployment: <DEPLOYMENT_NAME>
+```
+
+**Components:**
+
+| Parameter | Description |
+|---|---|
+| `IR_OUTPUT_PATH` | Path to the folder containing your model and `requirements.txt`. |
+| `IR_OUTPUT_NAME` | Model filename including its extension (`.gguf` or `.ggml`). |
+| `BUCKET_NAME` | DataLake bucket where the model files will be stored. |
+| `AUTO_DEPLOY` | Boolean. If `YES`, the model is deployed directly to Ai-API™. |
+| `NAMESPACE` | Namespace for the deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+| `DATACENTER` | Datacenter for the deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+| `KIOSK` | Kiosk for the deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+| `PLAN` | Plan for the deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+| `DEPLOYMENT_NAME` | Name of the Ai-API™ deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+
+<Warning>
+  `IR_OUTPUT_PATH` must contain both the model file and a `requirements.txt`. Include the file extension in `IR_OUTPUT_NAME`. Depending on model size, this process can take 2–3 hours.
+</Warning>
+
+---
+
+### vLLM
+
+Serves a model using vLLM.
+
+```bash
+zeblok modelserve --type vllm
+? Enter the directory name containing your model : <MODEL_DIRECTORY>
+? Select your DataLake Bucket to Deploy : <BUCKET_NAME>
+? Do you want to auto-deploy? : <AUTO_DEPLOY>
+? Select your namespace: <NAMESPACE>
+? Select your DataCenter: <DATACENTER>
+? Select your Kiosk: <KIOSK>
+? Select your Plan: <PLAN>
+? Name of your Deployment: <DEPLOYMENT_NAME>
+```
+
+**Components:**
+
+| Parameter | Description |
+|---|---|
+| `MODEL_DIRECTORY` | Folder inside the workstation containing the model and all related files. |
+| `BUCKET_NAME` | DataLake bucket where the model files will be stored. |
+| `AUTO_DEPLOY` | Boolean. If `YES`, the model is deployed directly to Ai-API™. |
+| `NAMESPACE` | Namespace for the deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+| `DATACENTER` | Datacenter for the deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+| `KIOSK` | Kiosk for the deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+| `PLAN` | Plan for the deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+| `DEPLOYMENT_NAME` | Name of the Ai-API™ deployment. Prompted only when `AUTO_DEPLOY` is `YES`. |
+
+<Warning>
+  Ensure `MODEL_DIRECTORY` contains all files required by the model. Depending on model size, this process can take 1–2 hours.
+</Warning>

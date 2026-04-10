@@ -1,0 +1,43 @@
+---
+title: "Roles"
+description: "Define and assign roles to control what users can do in your organization."
+---
+
+Roles are the building blocks of access control in IAM. Each role carries a set of policies that either grant privileges or impose restrictions on user activities within the Zeblok Computational Platform. By assigning roles to users — directly or through user groups — admins control exactly what each person can see and do inside AI MicroCloud.
+
+<Note>
+  Only users with admin access can create, edit, and assign roles in IAM.
+</Note>
+
+## Pre-Defined Roles
+
+When the platform is set up, a set of pre-defined roles is provided out of the box:
+
+| Role | Description |
+|---|---|
+| **Basic Access** | Offers the most limited level of access to platform resources |
+| **Developer Role** | Tailored for developers, with access to development-specific features and specific menu restrictions |
+| **Product Role** | Provides access related to product features and workflows |
+| **Playground User Role** | A custom role scoped to users who only need access to the playground environment |
+
+## Role-Based Access Control
+
+IAM uses role-based access control (RBAC) to manage what users can do. Key behaviors:
+
+- **Menu restrictions** — Developer and Product roles may have specific menu items hidden or restricted, giving those users a tailored experience that matches their responsibilities.
+- **Policy assignment** — Each role carries policies that govern access to AI MicroCloud resources. When you assign a role to a user group, every user in that group inherits those policies.
+- **Least-privilege by default** — Start users with the Basic Access role and add more permissive roles only as needed.
+
+## Custom Roles
+
+Admins can create custom roles to match the exact access requirements of their organization. Custom roles give you full control over which permissions and platform capabilities are included.
+
+<Tip>
+  Use custom roles when none of the pre-defined roles map cleanly to a team's responsibilities. You can mix and match permissions to build a role that grants exactly what is needed — and nothing more.
+</Tip>
+
+## Distributing Roles
+
+Roles are distributed to organization members through user groups. Assign a role to a user group, then add the relevant users to that group — all members automatically inherit the role's policies.
+
+See [User Groups](/account/iam-usergroups) for details on how to create groups and assign roles to them.

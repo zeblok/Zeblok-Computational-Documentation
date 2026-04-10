@@ -1,0 +1,55 @@
+---
+title: "Create an account"
+description: "Sign up for Zeblok Computational as an individual user or accept an invitation from your organization admin."
+---
+
+There are two ways to get access to Zeblok Computational: register yourself as an individual user, or accept an invitation sent by an OrgAdmin who wants to add you to their namespace.
+
+<Tabs>
+  <Tab title="Individual user">
+    Use this path if you are signing up on your own, without an existing organization invitation.
+
+    <Steps>
+      <Step title="Go to the signup page">
+        Navigate to [https://app.zbl-aws.zeblok.com/signup](https://app.zbl-aws.zeblok.com/signup). You will land on the Zeblok Computational individual signup page.
+      </Step>
+      <Step title="Fill in your credentials">
+        Enter the required details — name, email address, and password. Review the form before submitting.
+      </Step>
+      <Step title="Submit and wait for the confirmation email">
+        Click **Sign Up**. If your details are valid, a notification appears at the top of the page:
+
+        > **Welcome to the Zeblok Computational AI Platform. Please check your email for an account activation link to complete your registration.**
+      </Step>
+      <Step title="Activate your account">
+        Open the email sent to your registered address and click the **Link** button inside it. This takes you to a confirmation page.
+      </Step>
+      <Step title="Sign in">
+        On the confirmation page, click **Login**. Enter the same credentials you used during registration, then click **Sign In**. You will be redirected to the Zeblok dashboard.
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="Invited user">
+    Use this path if an OrgAdmin has invited you to join their organization's namespace on Ai-MicroCloud.
+
+    <Steps>
+      <Step title="OrgAdmin sends the invitation">
+        Your organization admin logs in to Ai-MicroCloud, navigates to **Dashboard** from the left menu, and clicks the three-dot menu beside the search bar. From the menu, the admin selects **Invite User** and enters your email address, then clicks **Invite**.
+      </Step>
+      <Step title="Check your email">
+        You will receive an invitation email from Zeblok. Open it and follow the link inside to set up your credentials.
+      </Step>
+      <Step title="Create your username and password">
+        The link takes you to a registration page where you create your username and password for the platform.
+      </Step>
+      <Step title="Sign in">
+        Once your credentials are created, sign in at [https://app.zbl-aws.zeblok.com/](https://app.zbl-aws.zeblok.com/) using your new username and password.
+      </Step>
+    </Steps>
+
+    <Note>
+      New invited users receive **Default** access. Your OrgAdmin must update your namespace and IAM role assignments after onboarding.       Refer to the [IAM Overview](/account/iam) for instructions on adding users to user groups.
+    </Note>
+  </Tab>
+</Tabs>

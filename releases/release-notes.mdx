@@ -1,0 +1,269 @@
+---
+title: "Release notes"
+description: "What's new in each version of Zeblok Computational."
+---
+
+This page documents what changed in each release of Zeblok AI-MicroCloud. Updates from intermediate releases are folded into the next major release version.
+
+<AccordionGroup>
+
+  <Accordion title="v1.2.9 — June 2024">
+    Updates from v1.2.8 are also included in this release.
+
+    **IaaS**
+
+    - **Automatic MINIO setup in bare-metal environments:** MINIO deployment on bare-metal clusters is now fully automated through the launcher. Previously this was a manual step performed by the Zeblok team. Automation reduces deployment time and eliminates the need for human interaction during setup.
+
+    **PaaS**
+
+    - **Microservice and workstation update feature:** You can now update a spawned microservice or workstation directly from AI-MicroCloud. Changes include adjusting attached resources (CPU/memory), environment variables, and ports.
+    - **Notification improvements:** The notification count resets once you have reviewed all notifications and marked them as read. New notifications pop up on your workspace briefly before being stored in the notifications tab.
+
+    **Bug fixes**
+
+    - Workstations without public access were not appearing in the spawn tray during the spawning process. This is now fixed.
+    - Shared workstations were not accessible to users they were shared with due to security policy misconfiguration. Users with proper permissions can now access shared workstations.
+    - Ai-API and OaaS resources spawned by a user were visible to other users in the organization regardless of their permissions. Visibility is now correctly scoped.
+    - A plan that is not set to public is now only visible to the primary owner of that plan.
+    - Dashboard UI improvements provide a listed view for admins of all workstation types and microservice images spawned at any given time.
+
+    **SaaS — Launcher bare-metal**
+
+    - Performance improvements: faster API responses, improved data handling during cluster creation and updates.
+    - Enhanced error handling: clearer error messages with severity levels across the platform.
+    - On deployment failure, you can download the log file, troubleshoot the issue, then edit/modify the cluster and resume the deployment.
+    - After a cluster is successfully created and MicroCloud is deployed, you automatically receive a component version validation list showing all modules and their versions. This list is useful when raising support tickets.
+
+    **Gen-AI / Co-pilot**
+
+    - **Embedding Creation Application:** Seamless integration with the Zeblok Dataset for large-scale data access; embeddings stored in ChromaDB; supports creating embeddings from multiple PDFs in a single dataset.
+    - **Finetune Application:** Connect to the knowledge vector database to store and retrieve embeddings; query documents with natural language prompts.
+  </Accordion>
+
+  <Accordion title="v1.2.8 — May 2024">
+    **IaaS**
+
+    - **Persistent log storage:** The logging system now persists logs beyond container deletion, including after container removal. All logs are centralized, enabling real-time analysis and faster troubleshooting.
+    - **Improved SSL/ISTIO security:** Newer cipher suites have been implemented, including AES-256, Elliptic Curve Cryptography (ECC) for key exchange, and Perfect Forward Secrecy (PFS). This improves resilience against modern cryptographic attacks.
+
+    **PaaS**
+
+    - **Microservice and workstation sharing:** You can share spawned microservices and workstations with other users in your organization. This promotes resource optimization and team collaboration by avoiding redundancy.
+    - **Notification tab:** All user and component activity — including spawning, running, and deletion events — is now captured in a dedicated Notifications tab. Errors during any activity are also logged here.
+    - **Containerization tab:** The Deployment tab has been renamed to Containerization, which covers all CaaS activities and provides real-time status updates.
+
+    **Backend enhancements**
+
+    - **Private registry support:** Microservices from private container registries can now be onboarded and spawned without issues. A bug that caused secret creation to fail has been resolved.
+    - **URL authentication:** Microservice and JupyterLab URLs are now only accessible from inside the MicroCloud. Unauthenticated users are redirected to the login page if they attempt to access a service URL directly.
+
+    **CLI enhancements**
+
+    - Model serving command upgraded to consolidate all serving methods under a single command.
+    - `zeblok configure` command now detects the object storage type automatically.
+  </Accordion>
+
+  <Accordion title="v1.2.7 — March 2024">
+    This release targets the Basic SKU.
+
+    **PaaS — UI enhancements**
+
+    - User roles are now displayed visually on the user list for administrators.
+    - Datacenter form updated: node type is now visible, and unnecessary fields have been removed.
+    - Microservice and workstation cards now show license details and service provider information.
+    - A terms and conditions checkbox is required before completing any spawning process.
+    - Activity logs are now accessible for tracking and monitoring.
+    - Forgot password and reset password pages added.
+    - Search and filter fields added throughout the UI.
+    - Error messages are now displayed in the UI to aid troubleshooting.
+
+    **PaaS — Backend enhancements**
+
+    - Event Exporter introduced for exporting events for analysis and reporting.
+    - Dashboard shows detailed workstation, microservice, and OaaS information.
+    - Deployments tab supports Ai-API and Pipeline containerization and deployment, including logs for failed containerization steps.
+    - Email alerting system added to notify users of important events.
+    - GPU monitoring added for cloud environments.
+    - Containerization as a Service (CaaS) now available as a dedicated feature.
+
+    **CLI enhancements**
+
+    - CLI now integrates with MINIO, BLOB, and S3 object storage, adapting automatically to the environment.
+    - CaaS integration added: deploy and manage containerized applications directly from the CLI.
+
+    **SDK enhancements**
+
+    - Ai-Pipeline auto-deploy and non-auto-deploy features added.
+    - `get_all` Ai-Pipelines and validate Ai-Pipeline interfaces added.
+    - Dataset management added with support for S3 (AWS), Blob (Azure), and MinIO object storage.
+    - Upload and download files of any size to object storage from local or Ai-MicroCloud environments.
+
+    **SaaS — Basic Launcher (AWS, Azure, bare-metal)**
+
+    - After cluster creation, you can add extra node groups/node pools, including GPU instance node pools.
+    - On deployment failure, download the log file, resolve the issue, then edit the cluster and resume.
+    - Component version validation list generated automatically after successful deployment.
+  </Accordion>
+
+  <Accordion title="v1.2.6 — December 2023">
+    **SaaS — LLM model serving**
+
+    - LLAMA CPP support added for serving quantized models.
+    - Facebook 125M model support added via vLLM serving, exposed as a CLI-based API.
+
+    **PaaS — CLI**
+
+    - vLLM and LLAMA CPP model serving added as API commands.
+    - Multipart upload support for larger model sizes.
+
+    **PaaS — Comp app**
+
+    - IAM roles and privileges updated for finer access control and easier privilege segregation.
+    - Generic image introduced for the Enterprise edition: a single image compatible across all environments.
+
+    **PaaS — UI improvements**
+
+    - Support button added: you can raise support tickets directly from within AI-MicroCloud.
+    - Secret keys remain available in the session after generation; copy button added for keys.
+    - Microservice and workstation card alignment improved.
+    - User role displayed on the Manage Account page.
+    - Profile and login page improvements: view password button, context menu on login page.
+
+    **PaaS — CaaS**
+
+    - CaaS now supports concurrent users via Kubernetes jobs with no wait time.
+    - CaaS redesigned with custom plans, improved usability, and full process logs.
+    - Large data chunks and any model size can now be served and packaged as an API.
+
+    **IaaS — Hardware**
+
+    - Intel AMX support added for both Basic and Enterprise SKU.
+
+    **IaaS — Basic Baremetal Launcher**
+
+    - Create an AI platform in a bare-metal environment automatically in minutes. The launcher accepts access credentials as encrypted data and deploys AI-MicroCloud in the background, providing a URL when ready.
+
+    **IaaS — Enterprise Azure Launcher**
+
+    - Connect three hubs with any number of bare-metal servers and establish the environment automatically in a few minutes.
+
+    **Website**
+
+    - Playground button added at zeblok.com: try AI-MicroCloud free for 21 days by clicking "Playground" and completing the registration form.
+  </Accordion>
+
+  <Accordion title="v1.2.5 — September 2023">
+    **IaaS**
+
+    - AI-MicroCloud now runs on Intel Sapphire-Rapid processors.
+    - Multi-master cluster on bare-metal servers supported.
+
+    **PaaS — Basic**
+
+    - Azure Blob storage available from the UI for uploading, viewing, and downloading datasets.
+    - Azure Basic version integrated with the orchestration add-on (Ray) for HPC workloads.
+
+    **SDK**
+
+    - SDK now supports: Plans, Orchestration add-on, Namespaces, and Microservices.
+
+    **CLI**
+
+    - Workstation snapshot feature added for creating images of built workstations.
+    - AWS S3 storage integrated with the CLI for dataset upload, download, and viewing.
+    - Azure Blob storage integrated with the CLI, providing the same dataset management capabilities as S3.
+
+    **Launchers**
+
+    - Basic launcher: revamped UI integrated with Order to Fulfillment for AWS; AKS integration added for Azure Basic microcloud.
+    - Enterprise launcher: updated UI with Order to Fulfillment integration; Azure platform support added; user can self-install the launcher.
+
+    **AWS Marketplace**
+
+    - Zeblok AI-MicroCloud is available on AWS Marketplace with customer onboarding, metering, billing, and vendor-metered tagging.
+  </Accordion>
+
+  <Accordion title="v1.2.4 — June 2023">
+    **Enterprise version**
+
+    - All software packages updated to latest versions (bug fixes and security updates).
+    - Minimum Baseline Security Standard (MBSS) can now be applied to edge servers via the Enterprise launcher UI.
+    - SSH access to edge servers can be restricted via the Enterprise launcher UI.
+    - New certified hardware: Supermicro SYS-510D-10C-FN6P and SYS-110D-20C-FRAN8TP; Intel Data Center GPU Flex 140.
+    - Edge node online status monitoring added.
+
+    **Basic version**
+
+    - Auto-scaling plans on AWS: define plans that scale infrastructure automatically as AI workload resource needs increase.
+    - Ai-MicroCloud DataLake uses S3 as backend in AWS environments.
+    - Encryption layer added to the Basic Launcher for sensitive input data.
+    - Ray cluster spawning via the orchestration add-on is now available from the GUI.
+    - Dataset deletion from the GUI added.
+    - Personal S3 bucket automatically created for each user on sign-up.
+    - Pre-defined IAM roles provided on microcloud spawn, distributable by admin to user groups.
+    - Logs now include login details for workstations, microservices, and AI-APIs, retained for 30 days.
+    - MLflow integration added to the CLI for model upload and serving.
+    - Basic Launcher now deploys AI-MicroCloud on AWS automatically in minutes.
+
+    **Bug fixes**
+
+    - Support button fixed for proper ticket creation.
+    - Alerting integrated for environment downtime notifications.
+    - Cross-cloud integration issues resolved.
+    - All mandatory fields highlighted in forms.
+  </Accordion>
+
+  <Accordion title="Earlier versions">
+    **v1.2.2 (January 2023)**
+
+    - SuperAdmin edge monitoring: detailed CPU and memory graphs for edge servers and microservices.
+    - Automatic updates can now be applied without taking down the whole environment.
+    - Edge security: Minimum Baseline Security Standard (MBSS) incorporated; access control for SSH and BMC; local storage encryption.
+    - Order Fulfillment System introduced: streamlines the journey from purchase to MicroCloud access.
+    - Basic Launcher deployed on AWS; Enterprise Launcher updated with public cloud or bare-metal HUB options.
+    - Dataset onboarding added: upload data to the platform for use by any spawned microservice or workstation.
+
+    **v1.2.1 (September 2022)**
+
+    - Improved microservice configuration: flexible environment variables, arguments, and ports during spawning.
+    - Simultaneous edge deployments of Ai-API and MicroServices.
+    - Zeblok CLI: deploy Ai-Models to multiple edge nodes simultaneously as an Ai-API.
+    - Dynamic plans: attach customized CPU and memory plans during spawning within real-time resource recommendation limits.
+    - Resource Manager: admins can view monitoring graphs for each resource type.
+    - SDK: deploy simultaneous multi-datacenter Ai-Pipelines and collate Ai-Runs at a single endpoint.
+    - Launcher App: new GUI for bare-metal microcloud setup from scratch.
+    - SDK available at pypi.org/project/zeblok-py (`pip install zeblok-py`).
+
+    **v1.2.0 (June 2022)**
+
+    - Python SDK supports deploying simultaneous multi-datacenter Ai-Pipelines with integration for open-source tools.
+    - One-click CSV export of user data tables for admins.
+    - Weekly usage summary emails for all users.
+    - Private Docker image repository support for workstations and microservices.
+    - Multiple version selection when spawning workstations or microservices.
+    - Single-click Google sign-in and Google Authenticator MFA.
+    - MicroServices can now support multiple protocols, exposable publicly or interconnected as an ecosystem.
+    - New MLOps workflow for multi-datacenter Ai-Pipelines, Runs, and experiments via the CLI.
+    - Zeblok Containerization Service upgraded for containerizing and auto-deploying Ai-Pipeline images.
+
+    **v1.1.0 (March 2022)**
+
+    - OpenVINO Model Serving added to the Ai-API Engine; toolkit upgraded to v2022.4.1.
+    - Ai-WorkStations upgraded with NVIDIA CUDA 11.4; JupyterLab upgraded with Python 3.9.
+    - New IAM system with dynamic role and permission modification for users and admins.
+    - Zeblok CLI upgraded for OpenVINO packaging and automated Ai-API deployment.
+    - Ai-API deployment now supports gRPC protocol.
+    - Zeblok Ai-DataLake upgraded with one-click auto account setup and RBAC security policies.
+    - Automatic database backup every 6 hours in all environments for disaster recovery.
+
+    **v1.0.0 (December 2021)**
+
+    - AI-MicroCloud available on Azure Cloud.
+    - AI-MicroCloud deployed for Advantech Labs and Intel Dev Cloud bare-metal environments.
+    - Notebook post-creation lifecycle run commands added.
+    - Kiosk selection for on-premise datacenter deployments of microservices and Ai-API.
+    - Datacenter Monitoring page added with per-node performance graphs and logs.
+    - Brand new UI released.
+  </Accordion>
+
+</AccordionGroup>

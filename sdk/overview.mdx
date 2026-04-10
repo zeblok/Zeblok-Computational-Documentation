@@ -1,0 +1,57 @@
+---
+title: "Python SDK"
+description: "Integrate Zeblok programmatically using the Python SDK."
+---
+
+The Zeblok Python SDK (version 1.1.1) lets you integrate external systems with the Zeblok AI-MicroCloud platform via code. You can automate resource management, deploy Ai-Pipelines across multiple datacenters, and manage object storage — all from your own scripts or applications.
+
+## Installation
+
+Install the SDK using pip:
+
+```bash
+pip install zeblok-sdk
+```
+
+The SDK is also available under the alternate package name `zeblok-py`:
+
+```bash
+pip install zeblok-py
+```
+
+## What the SDK supports
+
+- **Plans** — create and manage resource plans defining CPU and memory allocations
+- **Orchestration add-on (Ray clusters)** — spawn and manage Ray clusters for HPC workloads, model training, and large-scale computation
+- **Namespaces** — create and manage namespaces to isolate and organize resources within your organization
+- **Microservices** — deploy, query, and manage microservices running on AI-MicroCloud
+- **Ai-Pipelines** — deploy Ai-Pipelines in auto-deploy and non-auto-deploy modes, list all pipelines, and validate pipeline configurations
+- **Datasets and object storage** — manage datasets and interact with S3 (AWS), Blob (Azure), and MinIO object storage environments
+
+### File transfers
+
+You can upload and download files of any size directly to and from object storage via the SDK, whether you are working from your local machine or from within an Ai-MicroCloud environment.
+
+### Multi-datacenter Ai-Pipelines
+
+The SDK lets you deploy simultaneous Ai-Pipelines across multiple enterprise datacenters and collate results (Ai-Runs) at a single endpoint of your choice.
+
+## Usage documentation
+
+<Note>
+  The full SDK usage guide is available as a PDF and Markdown file from the Zeblok team. Contact [support@zeblok.com](mailto:support@zeblok.com) to request the documentation.
+</Note>
+
+Once you have installed the SDK, refer to the usage guide for detailed instructions on authentication, available methods, and examples for each supported component.
+
+<Steps>
+  <Step title="Install the SDK">
+    Run `pip install zeblok-sdk` in your local environment or inside your Ai-MicroCloud workstation.
+  </Step>
+  <Step title="Obtain the usage guide">
+    Contact the Zeblok support team at [support@zeblok.com](mailto:support@zeblok.com) to receive the SDK Usage PDF and Markdown file.
+  </Step>
+  <Step title="Authenticate and start integrating">
+    Follow the authentication steps in the usage guide to connect the SDK to your AI-MicroCloud instance and begin automating your workflows.
+  </Step>
+</Steps>

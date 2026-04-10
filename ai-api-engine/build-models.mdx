@@ -1,0 +1,29 @@
+---
+title: "Build Models"
+description: "Containerize your trained model using the ZBL CLI."
+---
+
+<Note>
+  Read the [Notebooks](/ai-api-engine/notebooks) section before starting this guide.
+</Note>
+
+## Building models guide
+
+After you have trained a model in your notebook, the next step is to containerize it so it can be deployed as an Ai-API™. You do this using the Zeblok CLI from the integrated terminal in JupyterLab.
+
+<Steps>
+  <Step title="Open the integrated terminal">
+    Inside JupyterLab, click **New Launcher** in the file browser panel, then click **Terminal**. This opens a terminal session inside your Ai-WorkStation.
+  </Step>
+  <Step title="Serve and package your model">
+    Use the `zeblok modelserve` command to containerize your trained model and push it to your DataLake bucket. You can specify the serving method directly with `--type`, or run the command without a flag to select the method interactively.
+
+    ```bash
+    zeblok modelserve --type <method>
+    ```
+
+    Supported methods: `openvino`, `mlflow`, `bentoml`, `llamacpp`, `vllm`.
+
+    For full details on each method and all available options, see the [ZBL CLI reference](/ai-api-engine/cli).
+  </Step>
+</Steps>

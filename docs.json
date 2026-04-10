@@ -1,0 +1,88 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "luma",
+  "name": "Zeblok Computational",
+  "favicon": "https://icons.duckduckgo.com/ip3/computationaldocs.zeblok.com.ico",
+  "colors": {
+    "primary": "#1A6EFF",
+    "light": "#E8F0FF",
+    "dark": "#0A3080"
+  },
+  "navbar": {
+    "primary": {
+      "type": "button",
+      "label": "Get Started",
+      "href": "https://www.computational.zeblok.com"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "core-concepts",
+              "create-an-account",
+              "sign-in"
+            ]
+          },
+          {
+            "group": "Workstations & Services",
+            "pages": [
+              "spawn-workstation",
+              "spawn-microservice",
+              "spawn-orchestration-add-on",
+              "isv-onboarding"
+            ]
+          },
+          {
+            "group": "Ai-API Engine",
+            "pages": [
+              "ai-api-engine/introduction",
+              "ai-api-engine/notebooks",
+              "ai-api-engine/build-models",
+              "ai-api-engine/cli",
+              "ai-api-engine/deploy"
+            ]
+          },
+          {
+            "group": "Data & Monitoring",
+            "pages": [
+              "data/datalake",
+              "data/datasets",
+              "data/monitoring"
+            ]
+          },
+          {
+            "group": "Account & Access",
+            "pages": [
+              "account/manage-account",
+              "account/two-factor-auth",
+              "account/iam",
+              "account/iam-roles",
+              "account/iam-usergroups"
+            ]
+          },
+          {
+            "group": "SDK & Integrations",
+            "pages": [
+              "sdk/overview"
+            ]
+          },
+          {
+            "group": "Reference",
+            "pages": [
+              "releases/release-notes",
+              "releases/known-issues",
+              "releases/common-errors",
+              "support"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

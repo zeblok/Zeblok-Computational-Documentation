@@ -1,0 +1,107 @@
+---
+title: "Manage Account"
+description: "Update your profile, change your password, and manage account settings."
+---
+
+The Manage Account page lets you view and update your profile, manage credentials, and control account security. Your assigned role is displayed on this page.
+
+## Profile
+
+Your profile contains your display information and account details. To access it, click the three-dot menu in the top-right corner of the dashboard and select **Profile** (or navigate to the Manage Account page from your account menu).
+
+From your profile you can review your current role, update your display name, and access credential generation tools.
+
+## Change Password
+
+You can update your password directly from your profile settings.
+
+<Steps>
+  <Step title="Open your profile">
+    Click the three-dot menu in the top-right corner of the dashboard and select **Profile**.
+  </Step>
+  <Step title="Navigate to Change Password">
+    Locate the **Change Password** section within your profile settings.
+  </Step>
+  <Step title="Enter your new password">
+    Enter your current password, then enter and confirm your new password.
+  </Step>
+  <Step title="Save changes">
+    Click **Save** to apply your new password immediately.
+  </Step>
+</Steps>
+
+## Forgot Password
+
+If you cannot sign in because you have forgotten your password, use the Forgot Password flow to receive a reset link by email.
+
+<Note>
+  Your account must already be registered on the Zeblok Computational Platform before you can receive a password reset email.
+</Note>
+
+<Steps>
+  <Step title="Go to the Sign In page">
+    Navigate to the Zeblok Computational sign-in page.
+  </Step>
+  <Step title="Click Forgot Password">
+    Click the **Forgot Password** link above the Sign In button. You will be redirected to the Forgot Password page.
+  </Step>
+  <Step title="Enter your registered email">
+    Enter the email address associated with your account and submit the form. A password reset link will be sent to that address.
+  </Step>
+  <Step title="Open the reset email">
+    Check your inbox for the reset email from Zeblok Computational. Click the reset link inside the email.
+  </Step>
+  <Step title="Set a new password">
+    Enter your new password on the reset page and click **Reset Password**. You will see a confirmation message: **Password updated successfully, please login to continue.**
+  </Step>
+  <Step title="Sign in with your new password">
+    Return to the sign-in page and log in with your updated credentials.
+  </Step>
+</Steps>
+
+## API Credentials
+
+You can generate API credentials (a key and secret pair) from your profile to authenticate programmatic access to the Zeblok Computational Platform.
+
+<Steps>
+  <Step title="Open your profile">
+    Click the three-dot menu in the top-right corner and select **Profile**.
+  </Step>
+  <Step title="Generate API credentials">
+    Locate the **API Credentials** section and click **Generate**. Your API key and secret will be created and displayed.
+  </Step>
+  <Step title="Copy your credentials">
+    Use the **Copy** button next to each field to copy your API key and secret. Once you navigate away from the session, the secret will no longer be shown, so copy it before closing.
+  </Step>
+</Steps>
+
+<Warning>
+  Your API secret is only visible during the current session. Store it securely before navigating away — it cannot be retrieved later without regenerating credentials.
+</Warning>
+
+## Data Lake Key
+
+You can generate your Data Lake access key from the Manage Account page to authenticate access to your DataLake storage.
+
+<Steps>
+  <Step title="Open Manage Account">
+    Navigate to the Manage Account page from your account menu.
+  </Step>
+  <Step title="Generate your Data Lake Key">
+    Locate the **Data Lake Key** section and click **Generate**. Your access key will be created and displayed.
+  </Step>
+  <Step title="Copy and store the key">
+    Use the **Copy** button to copy your Data Lake key and store it somewhere safe for use in your data workflows.
+  </Step>
+</Steps>
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Two-Factor Auth" icon="shield-halved" href="/account/two-factor-auth">
+    Add an extra layer of security to your account with two-factor authentication.
+  </Card>
+  <Card title="IAM Overview" icon="users-gear" href="/account/iam">
+    Manage user access, roles, and permissions across your organization.
+  </Card>
+</CardGroup>

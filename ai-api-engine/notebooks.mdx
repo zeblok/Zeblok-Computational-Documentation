@@ -1,0 +1,66 @@
+---
+title: "Notebooks"
+description: "Set up your Jupyter notebook environment for model development."
+---
+
+## Selecting a notebook
+
+Your Ai-WorkStation is built on JupyterLab. You can select a pre-built notebook from the AppStore — for example, the BentoML notebook — or you can bring your own Jupyter notebook and migrate your model code into it using the [Datasets](/data/datasets) feature.
+
+Available notebook types include:
+
+- **Ai-WorkStations** — GPU-accelerated development environments
+- **Intelligence Marketplace** — pre-built application notebooks
+- **Ai-HPC-WorkStations** — high-performance computing environments
+
+  <Note>
+    For a full walkthrough of spawning an Ai-WorkStation, see [Spawn Ai-WorkStation](/spawn-workstation).
+  </Note>
+
+Once you have spawned and opened your workstation, open the notebook and run all cells to train your model.
+
+<Note>
+  If you are bringing your own Jupyter notebook, install your required framework before running cells. See the framework installation section below.
+</Note>
+
+## Installing frameworks
+
+The commands below install specific versions of frameworks supported by the Zeblok CLI. All commands run from a terminal inside your Ai-WorkStation.
+
+### Zeblok CLI-compatible frameworks
+
+<CodeGroup>
+
+```bash Install MLflow
+pip install mlflow==2.5.0
+```
+
+```bash Install BentoML
+pip install bentoml==1.0.25
+```
+
+```bash Install OpenVINO
+pip install openvino==2023.0.0
+```
+
+</CodeGroup>
+
+### General package installation
+
+<CodeGroup>
+
+```bash Install a specific package version
+pip install {package_name}=={specific_version}
+```
+
+```bash Install from requirements.txt
+pip install -r $PATH/requirements.txt
+```
+
+```bash Update a package
+pip install -U {package_name}=={specific_version}
+```
+
+</CodeGroup>
+
+All commands above install the specified versions. Omit the `==version` suffix to install the latest available version.

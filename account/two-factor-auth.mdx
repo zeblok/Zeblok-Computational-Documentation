@@ -1,0 +1,52 @@
+---
+title: "Two-Factor Auth"
+description: "Enable two-factor authentication to secure your account."
+---
+
+Two-factor authentication (2FA) adds a second layer of verification to your sign-in process. After you enable it, anyone signing into your account must provide both your password and a one-time passcode (OTP) sent to your registered email address — making unauthorized access significantly harder.
+
+<Tip>
+  Enabling 2FA is optional but strongly recommended. It provides multi-layered security for your Zeblok Computational account.
+</Tip>
+
+## Enable 2FA
+
+<Steps>
+  <Step title="Sign in to the dashboard">
+    Enter your credentials on the [Sign In](https://app.zbl-aws.zeblok.com/) page. Once authenticated, you will be redirected to your dashboard.
+  </Step>
+  <Step title="Open the account menu">
+    Click the three-dot menu in the top-right corner of the dashboard. A dropdown menu will appear.
+  </Step>
+  <Step title="Toggle 2FA on">
+    At the bottom of the dropdown, click **2-FA**. Two-factor authentication will be enabled for your account immediately.
+  </Step>
+</Steps>
+
+<Note>
+  Enabling 2FA takes effect the next time anyone attempts to sign in to your account. Your current session is not affected.
+</Note>
+
+## Sign In with 2FA Enabled
+
+Once 2FA is active, the sign-in flow includes an additional OTP verification step.
+
+<Steps>
+  <Step title="Enter your credentials">
+    Go to the sign-in page, enter your email and password, and click **Sign In**.
+  </Step>
+  <Step title="Check your email for the OTP">
+    An OTP will be sent to your registered email address. Open the email from Zeblok Computational and copy the code.
+  </Step>
+  <Step title="Enter the OTP">
+    Enter the one-time passcode on the verification screen and submit. If the code is valid, you will be signed in.
+  </Step>
+</Steps>
+
+<Warning>
+  The OTP is valid for **5 minutes** only. You have **4 attempts** to enter a valid OTP — after 4 failed attempts your account will be locked and you will need to contact a Zeblok Administrator to regain access.
+</Warning>
+
+## Disable 2FA
+
+To turn off two-factor authentication, open the three-dot menu in the top-right corner of the dashboard and click **2-FA** again. The toggle will disable 2FA for your account, taking effect at the next sign-in.

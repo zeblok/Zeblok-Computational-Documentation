@@ -1,0 +1,46 @@
+---
+title: "Data Lake"
+description: "Store, manage, and query all your data at scale with Zeblok Ai-Data Lake."
+---
+
+## Overview
+
+Zeblok Ai-Data Lake is a centralized repository that lets you store all your structured and unstructured data at any scale. The platform is engineered for high performance — delivering SSD-speed access with industry-grade SSL security and data redundancy for high availability. Whether you are ingesting images, video files, IoT sensor data from Edge locations over 4G/5G networks, or uploading large CSV files, Ai-Data Lake handles data pipelining, analysis, and propagation so you can focus on building models.
+
+## Access methods
+
+You can reach your data lake from four different interfaces depending on your workflow.
+
+<AccordionGroup>
+  <Accordion title="Data Browser Portal" icon="globe">
+    The Data Browser Portal gives you secure, high-availability access to your files and objects through a web UI. Use it to set permissions, upload and download files, and edit data of various types and sizes — all without touching a command line. You can browse a full map of every file in your bucket directly in the browser.
+  </Accordion>
+
+  <Accordion title="Zeblok Magic Commands" icon="terminal">
+    Zeblok Magic Commands are available in every notebook instance. They give you quick access to object storage using intuitive Unix-like syntax. With Magic Commands you can create new files, delete old ones, create folders, and share access with other users — all from inside your running notebook.
+  </Accordion>
+
+  <Accordion title="S3 REST API" icon="code">
+    Ai-Data Lake exposes an S3-compatible REST API endpoint, letting you programmatically upload and manage files from any S3-aware client or tool. The API provides a unified interface for all objects and supports high-performance transfers that you can schedule or automate — for example, via cron jobs — between notebook instances or external hosts.
+  </Accordion>
+
+  <Accordion title="HTTP Source" icon="link">
+    You can upload and download files directly from HTTP sources without re-downloading them to your local machine first. This skips the intermediate steps between upload and download cycles, saving both time and local disk space.
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  When spawning an Ai-WorkStation, you can mount S3-compatible buckets directly so your data is immediately accessible inside the notebook environment without additional configuration.
+</Note>
+
+## Using Ai-Data Lake within a notebook
+
+Inside an Ai-WorkStation notebook, you access your data lake files through the **BlazingSQL** engine, which runs entirely on GPUs. This lets you run big data analytics across your private Ai-Data Lake account up to 8× faster than CPU-based query engines. You can write standard SQL expressions against your data lake, join tables across notebooks, and export query results back to the data lake or generate visual reports directly.
+
+## Security
+
+Ai-Data Lake is built with a granular, per-user access control model — each user can only access their own files by default.
+
+- **256-bit AES encryption** — all data is encrypted both in-transit and at-rest using bank-level AES-256, protecting it from third-party interception
+- **Granular access control** — access permissions are enforced per user; organization administrators can define role-based policies to control who can read or write which buckets and objects
+- **Hardened REST API** — REST API endpoints operate exclusively on pre-provisioned key/secret pairs; no request is accepted without valid credentials

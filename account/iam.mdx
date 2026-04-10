@@ -1,0 +1,39 @@
+---
+title: "IAM Overview"
+description: "Manage user access, roles, and permissions in your organization."
+---
+
+Identity Access Management (IAM) lets you control who can access resources on the Zeblok Computational Platform and what actions they can perform. Through IAM, you create user entities that represent people using the platform, and you assign them policies that either grant privileges or impose restrictions on their activities.
+
+<Note>
+  Only users with admin access can see the **IAM** tab in the sidebar.
+</Note>
+
+## How IAM Works
+
+IAM on the Zeblok Computational Platform is built around two core concepts:
+
+- **Roles** — define what actions a user or group is allowed to perform. Roles carry policies that grant or restrict access to specific platform capabilities.
+- **User Groups** — collect users together so you can assign roles to the whole group at once, rather than managing permissions user by user.
+
+Together, roles and user groups give your organization's admin precise, scalable control over access to AI MicroCloud resources.
+
+## IAM Sections
+
+The IAM page is divided into the following sections:
+
+| Section | Purpose |
+|---|---|
+| **Roles** | Create and manage roles that define user permissions and access policies |
+| **Usergroups** | Create groups of users and assign roles to them collectively |
+
+## Explore IAM
+
+<CardGroup cols={2}>
+  <Card title="Roles" icon="shield-check" href="/account/iam-roles">
+    Define roles and the access policies attached to them. Includes pre-defined roles and support for custom roles.
+  </Card>
+  <Card title="User Groups" icon="users" href="/account/iam-usergroups">
+    Group users together and assign roles at the group level to simplify permission management across your organization.
+  </Card>
+</CardGroup>

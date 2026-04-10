@@ -1,0 +1,79 @@
+---
+title: "Common errors"
+description: "Troubleshoot common errors and find solutions."
+---
+
+Use this page to diagnose and resolve common issues you may encounter while using Zeblok AI-MicroCloud.
+
+<AccordionGroup>
+
+  <Accordion title="Workstation not visible in the spawn tray">
+    **Symptom:** When attempting to spawn a workstation, the expected workstation image does not appear in the spawn tray.
+
+    **Cause:** The workstation image does not have public access enabled, or you do not have the required permissions to see it.
+
+    **Resolution:**
+    1. Ask your OrgAdmin to verify that the workstation image has public access enabled during onboarding.
+    2. If public access is already enabled and the image is still not visible, contact your OrgAdmin to confirm that your user account has the correct IAM role and permissions.
+    3. If the issue persists, contact [support@zeblok.com](mailto:support@zeblok.com).
+  </Accordion>
+
+  <Accordion title="Namespace not available">
+    **Symptom:** A namespace you expect to use is not listed or is not accessible.
+
+    **Cause:** Your user account is not a member of the namespace.
+
+    **Resolution:**
+    1. Contact your OrgAdmin and ask to be added to the relevant namespace.
+    2. Once added, log out and back in to refresh your session, then retry.
+  </Accordion>
+
+  <Accordion title="Deployment failure">
+    **Symptom:** An AI-MicroCloud cluster deployment fails partway through.
+
+    **Cause:** Deployment failures can occur for a variety of reasons, including misconfigured parameters, network issues, or resource constraints.
+
+    **Resolution:**
+    1. When a deployment fails, a log file is available for download from the launcher. Download it and review the errors.
+    2. Once you have identified the issue, edit or modify the cluster configuration to address it.
+    3. Resume the deployment from the launcher.
+    4. If you cannot determine the root cause from the logs, include the log file and your component versions list in a support ticket at [support@zeblok.com](mailto:support@zeblok.com).
+  </Accordion>
+
+  <Accordion title="Microservice from a private registry fails to spawn">
+    **Symptom:** A microservice sourced from a private container registry fails to start or fails during onboarding.
+
+    **Cause:** In earlier releases, secret creation failed when the randomly generated Kubernetes secret contained special characters, which Kubernetes does not accept. This was resolved in v1.2.8. If you are on an older version, you may still encounter this.
+
+    **Resolution:**
+    1. Upgrade to AI-MicroCloud v1.2.8 or later.
+    2. If you are already on v1.2.8 or later and the issue occurs, verify that no special characters are present in any secrets you are providing manually.
+    3. If the problem continues, contact [support@zeblok.com](mailto:support@zeblok.com) with the error details.
+  </Accordion>
+
+  <Accordion title="Shared workstation not accessible">
+    **Symptom:** A user in your organization cannot access a workstation that was shared with them.
+
+    **Cause:** The user does not have the required IAM permissions assigned, or the sharing configuration did not apply correctly.
+
+    **Resolution:**
+    1. Ask your OrgAdmin to verify that the user has the correct IAM role and permissions for shared workstation access.
+    2. Confirm that the workstation sharing action completed successfully (check the Notifications tab for any errors).
+    3. If permissions appear correct but access is still denied, contact [support@zeblok.com](mailto:support@zeblok.com).
+  </Accordion>
+
+  <Accordion title="Ai-API or OaaS visible to users who should not see it">
+    **Symptom:** Resources spawned by one user appear in the workspace of other users in the organization who do not have the relevant permissions.
+
+    **Cause:** This was a bug in earlier releases. It was resolved in v1.2.9.
+
+    **Resolution:**
+    1. Upgrade to AI-MicroCloud v1.2.9 or later.
+    2. After upgrading, resource visibility is correctly scoped to users with the appropriate permissions.
+  </Accordion>
+
+</AccordionGroup>
+
+<Note>
+  If you encounter an error that is not listed here, contact [support@zeblok.com](mailto:support@zeblok.com) or raise a ticket using the Support button inside AI-MicroCloud.
+</Note>

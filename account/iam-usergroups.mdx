@@ -1,0 +1,65 @@
+---
+title: "User Groups"
+description: "Group users together to manage permissions at scale."
+---
+
+A user group is a collection of users who share the same permissions. Instead of assigning roles to each user individually, you assign roles to the group — and every user in that group inherits those permissions automatically. This makes it far easier to manage access across teams as your organization grows.
+
+<Note>
+  Only admin users can create, edit, and manage user groups in IAM.
+</Note>
+
+## How User Groups Work
+
+User groups in Zeblok Computational IAM provide three key capabilities:
+
+- **Organised Access** — Admins create user groups to streamline access management across the organization.
+- **Role Assignment** — Admins assign one or more roles to a user group, collectively defining the access level for every user in that group.
+- **Invitation and Access Control** — Admins can invite individuals to a group, assign roles, and manage access collectively rather than user by user.
+
+Each user group can have **multiple users** and **multiple roles** assigned to it, giving you flexible, granular control over permissions and access capabilities.
+
+## Create a User Group
+
+<Steps>
+  <Step title="Open IAM">
+    In the sidebar, click **IAM**. The IAM page opens. Select the **Usergroups** tab.
+  </Step>
+  <Step title="Create a new group">
+    Click **Create Usergroup** (or the **+** / **Add** button). Enter a name for the group that reflects its purpose or the team it represents.
+  </Step>
+  <Step title="Add members">
+    Search for and add the users you want to include in the group. You can add multiple users at once.
+  </Step>
+  <Step title="Assign roles to the group">
+    Select one or more roles to assign to the group. All members of the group will immediately inherit the permissions defined by those roles.
+  </Step>
+  <Step title="Save the group">
+    Click **Save** to create the user group. The group and its role assignments become active right away.
+  </Step>
+</Steps>
+
+## Assign Roles to an Existing Group
+
+<Steps>
+  <Step title="Open the user group">
+    In IAM, navigate to **Usergroups** and click the group you want to update.
+  </Step>
+  <Step title="Add or remove roles">
+    In the group's **Roles** section, add new roles or remove existing ones as needed.
+  </Step>
+  <Step title="Save changes">
+    Click **Save**. The updated role assignments take effect for all users in the group immediately.
+  </Step>
+</Steps>
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Roles" icon="shield-check" href="/account/iam-roles">
+    Learn about the pre-defined roles available on the platform and how to create custom roles.
+  </Card>
+  <Card title="IAM Overview" icon="users-gear" href="/account/iam">
+    Understand how IAM roles and user groups work together to control access across your organization.
+  </Card>
+</CardGroup>

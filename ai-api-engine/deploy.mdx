@@ -1,0 +1,46 @@
+---
+title: "Deploy"
+description: "Deploy your containerized model as an Ai-API."
+---
+
+## Deploying models guide
+
+After your model has been trained and containerized using the ZBL CLI, you are ready to deploy it as an Ai-API™. There are two ways to deploy: auto-deploy from the CLI, or manually through the Deployments UI.
+
+## Auto-deploy
+
+When running `zeblok modelserve`, you can set `AUTO_DEPLOY` to `YES` at the interactive prompt. This deploys your model directly to Ai-API™ without any additional steps in the UI.
+
+<Tip>
+  Set auto-deploy during the `zeblok modelserve` command to skip the manual deployment steps entirely.
+</Tip>
+
+## Manual deploy
+
+<Steps>
+  <Step title="Open the Deployments tab">
+    Click the **Deployment** button in the left-hand menu. You will see your containerized model listed in a **ready** state.
+  </Step>
+  <Step title="Start the deployment">
+    Under the **Actions** column, click **Deploy AI-API** for your model.
+  </Step>
+  <Step title="Select a namespace">
+    If you are a member of a namespace, select it from the list. Otherwise, this step is skipped.
+  </Step>
+  <Step title="Select a datacenter">
+    Choose the datacenter location where you want to deploy your model.
+  </Step>
+  <Step title="Choose a node (Edge datacenters only)">
+    If you selected an Edge datacenter in the previous step, choose whether to deploy on the **HUB** node or a **SATELLITE** node.
+  </Step>
+  <Step title="Name your deployment">
+    Enter a name for your deployment and click **Create**.
+  </Step>
+  <Step title="Wait for deployment to complete">
+    You are redirected to the Workspace while the deployment runs in the background. When complete, the deployment status changes to **DEPLOYED**.
+  </Step>
+</Steps>
+
+<Note>
+  After a successful deployment, performance metrics monitoring becomes available for your Ai-API™ endpoint.
+</Note>

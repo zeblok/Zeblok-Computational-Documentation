@@ -1,0 +1,54 @@
+---
+title: "Ai-API Engine"
+description: "Deploy trained ML models as production-ready APIs."
+---
+
+## Overview
+
+Ai-API™ makes moving trained ML models to production easy. You can package, containerize, and deploy models from a wide range of frameworks — all from within your Zeblok workspace.
+
+Key capabilities:
+
+- **Package and containerize** models trained with any supported ML framework for production deployment.
+- **Deploy anywhere** — run online API serving endpoints or offline batch inference jobs.
+- **High-performance serving** with adaptive micro-batching support.
+- **Enterprise-grade server** that handles high traffic without crashing, with support for multi-model inference, API server Dockerization, a built-in Prometheus metrics endpoint, a Swagger/OpenAPI endpoint for API client library generation, and serverless endpoint deployment.
+- **Centralized management** for models and the deployment process via web UI and APIs.
+
+**Supported ML frameworks:**
+
+Scikit-Learn, PyTorch, TensorFlow 2.0, Keras, FastAI v1 & v2, XGBoost, H2O, ONNX, Gluon, and more.
+
+**Supported API input types:**
+
+`DataframeInput`, `JsonInput`, `TfTensorflowInput`, `ImageInput`, `FileInput`, `MultifileInput`, `StringInput`, `AnnotatedImageInput`, and more.
+
+**Supported API output adapters:**
+
+`BaseOutputAdapter`, `DefaultOutput`, `DataframeOutput`, `TfTensorOutput`, `JsonOutput`.
+
+## Easy steps to Ai-API™ deployment
+
+<CardGroup cols={3}>
+  <Card
+    title="Select notebook"
+    icon="book-open"
+    href="/ai-api-engine/notebooks"
+  >
+    Choose a pre-built notebook from the AppStore or bring your own Jupyter notebook.
+  </Card>
+  <Card
+    title="Build model"
+    icon="hammer"
+    href="/ai-api-engine/build-models"
+  >
+    Use the ZBL CLI from the integrated terminal to containerize your trained model.
+  </Card>
+  <Card
+    title="Deploy"
+    icon="rocket"
+    href="/ai-api-engine/deploy"
+  >
+    Deploy your containerized model as a live Ai-API™ endpoint.
+  </Card>
+</CardGroup>

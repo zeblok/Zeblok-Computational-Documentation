@@ -1,0 +1,38 @@
+---
+title: "ISV Onboarding"
+description: "Guide for Independent Software Vendors onboarding their microservices and workstations."
+---
+
+## Overview
+
+Independent Software Vendors (ISVs) can onboard their own custom microservices and workstations directly into the Zeblok AI-MicroCloud. Once onboarded, these resources appear alongside the platform's built-in offerings and can be spawned by users in any authorized namespace — just like first-party workstations and microservices.
+
+ISV onboarding covers two primary resource types:
+
+- **Custom MicroServices** — containerized services packaged as Docker images that you bring to the platform
+- **Custom Ai-WorkStations** — JupyterLab-based notebook environments built from your own container images
+
+## Onboarding Process
+
+To onboard a microservice, you register a container image in the Ai-MicroCloud admin panel by providing the image tag, compatible plans, internal port definitions, and optional configuration. To onboard a workstation, you supply the image tag, run command, compatible plans, and workstation type classification. Detailed field definitions for both forms are available in the Spawn Ai-WorkStation and Spawn MicroService guides.
+
+<Info>
+  For the full ISV onboarding guide and document, contact the Zeblok team.
+</Info>
+
+## kubectl Access for ISV Admins
+
+If you are an ISV admin user and need direct cluster access — for example, to debug a running container or manage Kubernetes resources in your namespace — Zeblok can provision scoped `kubectl` access restricted to your specific namespace. Contact the Zeblok team to request this access.
+
+## What Happens After Onboarding
+
+Once your microservice or workstation image is registered and marked as publicly accessible, platform users can spawn it through the standard **Spawn MicroService** or **Spawn Ai-WorkStation** workflows. You can also attach compatible plans to control which resource tiers are available to users who select your image.
+
+<CardGroup cols={2}>
+  <Card title="Spawn MicroService" icon="rocket" href="/spawn-microservice">
+    Deploy your onboarded microservice into a namespace.
+  </Card>
+  <Card title="Spawn Ai-WorkStation" icon="laptop-code" href="/spawn-workstation">
+    Launch your onboarded workstation notebook environment.
+  </Card>
+</CardGroup>

@@ -1,0 +1,58 @@
+---
+title: "Spawn MicroService"
+description: "Deploy a containerized microservice on the platform."
+---
+
+## Overview
+
+After you log in to the Zeblok Computational platform, the dashboard presents a **Spawn MicroService** option. Follow the steps below to deploy a containerized microservice into the Ai-MicroCloud.
+
+<Steps>
+  <Step title="Open the Spawn MicroService page">
+    From the dashboard, click **Spawn MicroService**. You are redirected to the microservice selection page.
+  </Step>
+
+  <Step title="Select a microservice">
+    Browse the list of available microservices that have already been onboarded to the Ai-MicroCloud and select the one you want to deploy.
+  </Step>
+
+  <Step title="Select a datacenter">
+    Choose the datacenter where you want your microservice to run. Both **Enterprise** and **Edge** datacenters are available depending on your organization's configuration.
+  </Step>
+
+  <Step title="Configure node placement and select a plan">
+    If you selected an **Edge** datacenter in the previous step, you have an additional option to choose your deployment target node:
+
+    - **HUB** — the central Edge node
+    - **SATELLITE** — any of the available satellite nodes in the Edge cluster
+
+    After selecting your node (Edge only), pick a **Plan** that provides the CPU and memory resources your microservice requires. Plan selection applies to both Edge and Enterprise datacenter types.
+  </Step>
+
+  <Step title="Select a namespace">
+    Choose the namespace where you want to deploy your microservice from the dropdown.
+
+    <Note>
+      You must be a member of a namespace to select it. Contact your OrgAdmin to be added to the appropriate namespace. If you are an OrgAdmin, navigate to the Namespaces section to add members directly.
+    </Note>
+  </Step>
+
+  <Step title="Configure the microservice">
+    Customize the microservice runtime behavior using the configuration fields below. All fields are optional; leave any field blank if the default value is sufficient.
+
+    | Field | Description |
+    |---|---|
+    | **Ports** | The list of ports to open on the microservice container. |
+    | **Environment Variables** | Key-value pairs passed to the container at startup. Use these to supply API keys, feature flags, or any runtime configuration your service reads from the environment. |
+    | **Arguments** | Additional arguments passed to the container's command entrypoint. These correspond to the `args` field in the container specification. |
+    | **Command** | Override the default command passed to the microservice container. Leave blank to use the image's built-in `CMD` or `ENTRYPOINT`. |
+  </Step>
+
+  <Step title="Name your microservice and spawn">
+    Enter a name for your microservice, then click **Spawn**. After the microservice is successfully created, you are redirected to the Ai-WorkSpace where your spawned microservice appears and is ready to use.
+  </Step>
+</Steps>
+
+## Onboarding a Custom Microservice
+
+To build and onboard your own microservice image into the Ai-MicroCloud before spawning it, refer to the [ISV Onboarding](/isv-onboarding) guide.
